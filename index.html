@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mariia Bakht | Content Creator</title>
     <meta name="description"
-        content="Portafolio de Mariia Bakht, creadora de contenido visual (foto y video) para negocios, marcas de ropa y belleza.">
+        content="Portafolio y servicios de Mariia Bakht, creadora de contenido visual (foto y video) con IA para negocios, marcas de ropa y belleza.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -16,29 +16,58 @@
 </head>
 
 <body>
-    <header class="navbar">
+    <header class="navbar" id="navbar">
         <a href="#inicio" class="logo">Mariia Bakht</a>
         <nav>
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#sobre-mi">Sobre mí</a></li>
                 <li><a href="#portafolio">Portafolio</a></li>
                 <li><a href="#videografia">Videografía</a></li>
+                <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
+        <div class="navbar-actions">
+            <button class="cart-btn" id="cart-btn" aria-label="Ver carrito">
+                🛒 <span class="cart-count" id="cart-count">0</span>
+            </button>
+            <button class="logout-btn" id="logout-btn" title="Cerrar sesión">Salir</button>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <li><a href="home.html">Login</a></li>
+        </div>
     </header>
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Cerrar menú">✕</button>
+        <ul>
+            <li><a href="#inicio" class="mobile-nav-link">Inicio</a></li>
+            <li><a href="#sobre-mi" class="mobile-nav-link">Sobre mí</a></li>
+            <li><a href="#portafolio" class="mobile-nav-link">Portafolio</a></li>
+            <li><a href="#videografia" class="mobile-nav-link">Videografía</a></li>
+            <li><a href="#servicios" class="mobile-nav-link">Servicios</a></li>
+            <li><a href="#contacto" class="mobile-nav-link">Contacto</a></li>
+        </ul>
+    </div>
+
     <section id="inicio" class="hero">
         <div class="hero-content">
             <h1>Capturando la esencia de tu <span>negocio</span></h1>
-            <p>Creación de contenido fotográfico y videográfico de alto impacto para potenciar la identidad visual de tu
-                marca.</p>
-            <a href="#portafolio" class="btn-primary">Ver Portafolio</a>
+            <p>Creación de contenido fotográfico y videográfico de alto impacto con IA para potenciar la identidad
+                visual de tu marca.</p>
+            <div class="hero-btns">
+                <a href="#servicios" class="btn-primary">Ver Servicios</a>
+                <a href="#portafolio" class="btn-secondary">Ver Portafolio</a>
+            </div>
         </div>
         <div class="hero-image">
             <img src="images/background.png" alt="Hero background">
         </div>
     </section>
+
     <section id="sobre-mi" class="about">
         <div class="container">
             <div class="about-grid">
@@ -49,15 +78,16 @@
                 <div class="about-text">
                     <h2>Detrás del lente</h2>
                     <p>¡Hola! Soy Mariia Bakht. Me especializo en la creación de contenido dinámico para marcas de moda
-                        (denim, t-shirts) y belleza.</p>
+                        (denim, t-shirts) y belleza, potenciado con herramientas de inteligencia artificial.</p>
                     <p>Mi objetivo es transformar la visión de tu negocio en una narrativa visual atractiva. Utilizo
                         técnicas modernas, enfoques creativos e iluminación precisa para que cada producto destaque al
                         máximo.</p>
-                    <a href="#contacto" class="btn-secondary">Hablemos de tu proyecto</a>
+                    <a href="#servicios" class="btn-secondary">Ver mis servicios</a>
                 </div>
             </div>
         </div>
     </section>
+
     <section id="portafolio" class="portfolio">
         <div class="container">
             <h2>Portafolio Destacado</h2>
@@ -123,6 +153,7 @@
             </div>
         </div>
     </section>
+
     <section id="videografia" class="videography">
         <div class="container">
             <h2>Movimiento y Vida</h2>
@@ -162,20 +193,233 @@
             </div>
         </div>
     </section>
+
+    <section id="servicios" class="services">
+        <div class="container">
+            <h2>Contrata un Servicio</h2>
+            <p class="section-subtitle">Elegí el paquete que mejor se adapte a tu marca y agregá tu brief al pedido.</p>
+
+            <div class="service-search-wrap">
+                <span class="service-search-icon">🔍</span>
+                <input
+                    type="search"
+                    id="service-search"
+                    class="service-search"
+                    placeholder="Buscar servicio… ej: reel, fotos, combo"
+                    autocomplete="off"
+                    aria-label="Buscar servicios">
+                <button class="service-search-clear" id="service-search-clear" aria-label="Limpiar búsqueda">✕</button>
+            </div>
+            <p class="search-no-results" id="search-no-results" aria-live="polite"></p>
+
+            <div class="service-filters" id="service-filters">
+                <button class="filter-btn active" data-filter="all" id="filter-all">Todos</button>
+                <button class="filter-btn" data-filter="foto" id="filter-foto">📸 Fotografía</button>
+                <button class="filter-btn" data-filter="video" id="filter-video">🎬 Video</button>
+                <button class="filter-btn" data-filter="combo" id="filter-combo">📦 Combos</button>
+            </div>
+
+            <div class="services-grid" id="services-grid">
+
+                <div class="service-card" data-category="foto" id="service-mini">
+                    <div class="service-icon">📸</div>
+                    <div class="service-badge foto">Fotografía</div>
+                    <h3>Mini Shoot</h3>
+                    <ul class="service-details">
+                        <li>🖼️ <strong>10 fotos</strong> editadas</li>
+                        <li>✨ Retoque profesional con IA</li>
+                        <li>📁 Entrega en alta resolución</li>
+                        <li>⏱️ Entrega en 3 días hábiles</li>
+                    </ul>
+                    <div class="service-price">$80 <span>USD</span></div>
+                    <button class="btn-add-cart" data-id="mini-shoot" data-name="Mini Shoot" data-price="80"
+                        data-category="foto" id="add-mini-shoot">Agregar al pedido</button>
+                </div>
+
+                <div class="service-card" data-category="foto" id="service-standard">
+                    <div class="service-icon">📸</div>
+                    <div class="service-badge foto">Fotografía</div>
+                    <span class="service-popular">MÁS PEDIDO</span>
+                    <h3>Standard Shoot</h3>
+                    <ul class="service-details">
+                        <li>🖼️ <strong>25 fotos</strong> editadas</li>
+                        <li>✨ Retoque profesional con IA</li>
+                        <li>🎨 Paleta de color personalizada</li>
+                        <li>📁 Entrega en alta resolución</li>
+                        <li>⏱️ Entrega en 5 días hábiles</li>
+                    </ul>
+                    <div class="service-price">$150 <span>USD</span></div>
+                    <button class="btn-add-cart" data-id="standard-shoot" data-name="Standard Shoot" data-price="150"
+                        data-category="foto" id="add-standard-shoot">Agregar al pedido</button>
+                </div>
+
+                <div class="service-card" data-category="foto" id="service-premium">
+                    <div class="service-icon">📸</div>
+                    <div class="service-badge foto">Fotografía</div>
+                    <h3>Premium Shoot</h3>
+                    <ul class="service-details">
+                        <li>🖼️ <strong>50 fotos</strong> editadas</li>
+                        <li>✨ Retoque premium con IA avanzada</li>
+                        <li>🎨 Paleta de color + moodboard</li>
+                        <li>📁 Alta resolución + versiones web</li>
+                        <li>⏱️ Entrega en 7 días hábiles</li>
+                        <li>🔄 2 rondas de revisión</li>
+                    </ul>
+                    <div class="service-price">$250 <span>USD</span></div>
+                    <button class="btn-add-cart" data-id="premium-shoot" data-name="Premium Shoot" data-price="250"
+                        data-category="foto" id="add-premium-shoot">Agregar al pedido</button>
+                </div>
+
+                <div class="service-card" data-category="video" id="service-reel-60">
+                    <div class="service-icon">🎬</div>
+                    <div class="service-badge video">Video</div>
+                    <h3>Reel / TikTok Short</h3>
+                    <ul class="service-details">
+                        <li>📐 Formato <strong>Vertical 9:16</strong></li>
+                        <li>⏱️ Duración hasta <strong>60 segundos</strong></li>
+                        <li>🎵 Música + transiciones</li>
+                        <li>✨ Color grading con IA</li>
+                        <li>📱 Optimizado para Instagram/TikTok</li>
+                    </ul>
+                    <div class="service-price">$100 <span>USD</span></div>
+                    <button class="btn-add-cart" data-id="reel-60" data-name="Reel/TikTok (60s)" data-price="100"
+                        data-category="video" id="add-reel-60">Agregar al pedido</button>
+                </div>
+
+                <div class="service-card" data-category="video" id="service-reel-3min">
+                    <div class="service-icon">🎬</div>
+                    <div class="service-badge video">Video</div>
+                    <h3>Reel / TikTok Long</h3>
+                    <ul class="service-details">
+                        <li>📐 Formato <strong>Vertical 9:16</strong></li>
+                        <li>⏱️ Duración hasta <strong>3 minutos</strong></li>
+                        <li>🎵 Música + transiciones avanzadas</li>
+                        <li>✨ Color grading con IA</li>
+                        <li>📱 Optimizado para Instagram/TikTok</li>
+                    </ul>
+                    <div class="service-price">$160 <span>USD</span></div>
+                    <button class="btn-add-cart" data-id="reel-3min" data-name="Reel/TikTok (3 min)" data-price="160"
+                        data-category="video" id="add-reel-3min">Agregar al pedido</button>
+                </div>
+
+                <div class="service-card" data-category="video" id="service-yt-2min">
+                    <div class="service-icon">🎬</div>
+                    <div class="service-badge video">Video</div>
+                    <h3>YouTube / Web Corto</h3>
+                    <ul class="service-details">
+                        <li>📐 Formato <strong>Horizontal 16:9</strong></li>
+                        <li>⏱️ Duración hasta <strong>2 minutos</strong></li>
+                        <li>🎵 Música + texto animado</li>
+                        <li>✨ Color grading con IA</li>
+                        <li>💻 Optimizado para YouTube/Web</li>
+                    </ul>
+                    <div class="service-price">$180 <span>USD</span></div>
+                    <button class="btn-add-cart" data-id="yt-2min" data-name="YouTube/Web (2 min)" data-price="180"
+                        data-category="video" id="add-yt-2min">Agregar al pedido</button>
+                </div>
+
+                <div class="service-card" data-category="video" id="service-yt-5min">
+                    <div class="service-icon">🎬</div>
+                    <div class="service-badge video">Video</div>
+                    <h3>YouTube / Web Completo</h3>
+                    <ul class="service-details">
+                        <li>📐 Formato <strong>Horizontal 16:9</strong></li>
+                        <li>⏱️ Duración hasta <strong>5 minutos</strong></li>
+                        <li>🎵 Música + texto + subtítulos</li>
+                        <li>✨ Color grading profesional con IA</li>
+                        <li>💻 Optimizado para YouTube/Web</li>
+                        <li>🔄 1 ronda de revisión</li>
+                    </ul>
+                    <div class="service-price">$280 <span>USD</span></div>
+                    <button class="btn-add-cart" data-id="yt-5min" data-name="YouTube/Web (5 min)" data-price="280"
+                        data-category="video" id="add-yt-5min">Agregar al pedido</button>
+                </div>
+
+                <div class="service-card" data-category="video" id="service-story-pack">
+                    <div class="service-icon">🎬</div>
+                    <div class="service-badge video">Video</div>
+                    <h3>Story Pack</h3>
+                    <ul class="service-details">
+                        <li>📐 Formato <strong>Vertical 9:16</strong></li>
+                        <li>📱 <strong>5 stories</strong> editadas</li>
+                        <li>✨ Animaciones + stickers</li>
+                        <li>🎨 Paleta de marca</li>
+                        <li>⏱️ Entrega en 2 días hábiles</li>
+                    </ul>
+                    <div class="service-price">$90 <span>USD</span></div>
+                    <button class="btn-add-cart" data-id="story-pack" data-name="Story Pack (5 stories)" data-price="90"
+                        data-category="video" id="add-story-pack">Agregar al pedido</button>
+                </div>
+
+                <div class="service-card" data-category="combo" id="service-combo-basico">
+                    <div class="service-icon">📦</div>
+                    <div class="service-badge combo">Combo</div>
+                    <h3>Combo Básico</h3>
+                    <ul class="service-details">
+                        <li>📸 <strong>15 fotos</strong> editadas</li>
+                        <li>🎬 <strong>1 Reel</strong> hasta 60s</li>
+                        <li>✨ Retoque con IA incluido</li>
+                        <li>⏱️ Entrega en 5 días hábiles</li>
+                    </ul>
+                    <div class="service-price original-price">$180 USD</div>
+                    <div class="service-price combo-price">$160 <span>USD</span> <em>¡Ahorrás $20!</em></div>
+                    <button class="btn-add-cart" data-id="combo-basico" data-name="Combo Básico" data-price="160"
+                        data-category="combo" id="add-combo-basico">Agregar al pedido</button>
+                </div>
+
+                <div class="service-card" data-category="combo" id="service-combo-pro">
+                    <div class="service-icon">📦</div>
+                    <div class="service-badge combo">Combo</div>
+                    <span class="service-popular">RECOMENDADO</span>
+                    <h3>Combo Pro</h3>
+                    <ul class="service-details">
+                        <li>📸 <strong>30 fotos</strong> editadas</li>
+                        <li>🎬 <strong>2 Reels</strong> hasta 60s c/u</li>
+                        <li>✨ Retoque premium con IA</li>
+                        <li>🎨 Paleta de color personalizada</li>
+                        <li>⏱️ Entrega en 7 días hábiles</li>
+                    </ul>
+                    <div class="service-price original-price">$350 USD</div>
+                    <div class="service-price combo-price">$320 <span>USD</span> <em>¡Ahorrás $30!</em></div>
+                    <button class="btn-add-cart" data-id="combo-pro" data-name="Combo Pro" data-price="320"
+                        data-category="combo" id="add-combo-pro">Agregar al pedido</button>
+                </div>
+
+                <div class="service-card" data-category="combo" id="service-combo-full">
+                    <div class="service-icon">📦</div>
+                    <div class="service-badge combo">Combo</div>
+                    <h3>Combo Full</h3>
+                    <ul class="service-details">
+                        <li>📸 <strong>50 fotos</strong> editadas</li>
+                        <li>🎬 <strong>1 video YouTube</strong> (5 min)</li>
+                        <li>📱 <strong>3 Reels</strong> hasta 60s c/u</li>
+                        <li>✨ Retoque premium con IA avanzada</li>
+                        <li>🔄 2 rondas de revisión</li>
+                        <li>⏱️ Entrega en 14 días hábiles</li>
+                    </ul>
+                    <div class="service-price original-price">$630 USD</div>
+                    <div class="service-price combo-price">$550 <span>USD</span> <em>¡Ahorrás $80!</em></div>
+                    <button class="btn-add-cart" data-id="combo-full" data-name="Combo Full" data-price="550"
+                        data-category="combo" id="add-combo-full">Agregar al pedido</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contacto" class="contact">
         <div class="container">
             <div class="contact-box">
                 <div class="contact-info">
                     <h2>Trabajemos Juntos</h2>
-                    <p>Si tienes un proyecto en mente y quieres llevar el contenido visual de tu negocio al siguiente
-                        nivel, escríbeme.</p>
+                    <p>Si tenés un proyecto en mente y querés llevar el contenido visual de tu negocio al siguiente
+                        nivel, escribime.</p>
                     <ul>
                         <li>📧 mariiabaht@gmail.com</li>
                         <li>📞 +54 9 11 0000-0000</li>
                         <li>📍 Buenos Aires, Argentina</li>
                     </ul>
                 </div>
-                <form class="contact-form" action="#" method="get">
+                <form class="contact-form" id="contact-form" novalidate>
                     <div class="input-group">
                         <label for="name">Nombre</label>
                         <input type="text" id="name" name="name" required placeholder="Tu nombre">
@@ -189,18 +433,140 @@
                         <textarea id="message" name="message" rows="4" required
                             placeholder="Cuéntame sobre tu proyecto..."></textarea>
                     </div>
-                    <button type="submit" class="btn-primary"
-                        onclick="event.preventDefault(); alert('¡Gracias por tu mensaje! Me comunicaré contigo pronto.');">Enviar
-                        Mensaje</button>
+                    <button type="submit" class="btn-primary" id="contact-submit-btn">Enviar Mensaje</button>
+                    <p class="form-success" id="form-success"></p>
                 </form>
             </div>
         </div>
     </section>
+
     <footer>
         <div class="container footer-content">
-            <p>&copy; 2026 Mariia Bakht. Todos los derechos reservados.</p>
+            <p>© 2026 Mariia Bakht. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-label="Carrito de pedido">
+        <div class="cart-header">
+            <h2>Tu Pedido</h2>
+            <button class="cart-close" id="cart-close" aria-label="Cerrar carrito">✕</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <p class="cart-empty" id="cart-empty">Tu pedido está vacío.<br>¡Elegí un servicio!</p>
+        </div>
+        <div class="cart-footer" id="cart-footer">
+            <div class="cart-total">
+                Total: <strong id="cart-total">$0 USD</strong>
+            </div>
+            <button class="btn-primary cart-checkout" id="cart-checkout">Enviar Pedido</button>
+        </div>
+    </aside>
+
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="brief-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button class="modal-close" id="modal-close" aria-label="Cerrar">✕</button>
+            <h2 id="modal-title">Agregar al pedido</h2>
+            <p id="modal-service-name" class="modal-service-name"></p>
+            <p class="modal-price-label">Precio: <strong id="modal-price"></strong></p>
+            <div class="modal-quantity">
+                <label>Cantidad</label>
+                <div class="qty-control">
+                    <button type="button" class="qty-btn" id="qty-minus" aria-label="Reducir cantidad">−</button>
+                    <span class="qty-value" id="qty-value">1</span>
+                    <button type="button" class="qty-btn" id="qty-plus" aria-label="Aumentar cantidad">+</button>
+                </div>
+                <p class="qty-subtotal">Subtotal: <strong id="modal-subtotal"></strong></p>
+            </div>
+            <div class="modal-brief">
+                <label for="brief-text">Brief / TZ del proyecto <span>(opcional)</span></label>
+                <textarea id="brief-text" rows="4"
+                    placeholder="Describí tu proyecto: estilo, colores, referencias, dónde se publicará, fecha límite, etc."></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="modal-cancel">Cancelar</button>
+                <button class="btn-primary" id="modal-confirm">Confirmar y agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="contact-checkout-overlay">
+        <div class="modal contact-checkout-modal" id="contact-checkout-modal" role="dialog" aria-modal="true"
+            aria-labelledby="contact-checkout-title">
+            <button class="modal-close" id="contact-checkout-close" aria-label="Cerrar">✕</button>
+            <div class="checkout-steps">
+                <span class="checkout-step done">1 · Pedido</span>
+                <span class="checkout-sep">›</span>
+                <span class="checkout-step active">2 · Tus datos</span>
+                <span class="checkout-sep">›</span>
+                <span class="checkout-step">3 · Confirmación</span>
+            </div>
+            <h2 id="contact-checkout-title">Tus datos de contacto</h2>
+            <p class="modal-subtitle">Para coordinar tu proyecto, nececito saber cómo contactarte.</p>
+
+            <form id="contact-checkout-form" novalidate>
+                <div class="login-row-2">
+                    <div class="checkout-field">
+                        <label for="co-nombre">Nombre</label>
+                        <input type="text" id="co-nombre" placeholder="Tu nombre" required autocomplete="given-name">
+                    </div>
+                    <div class="checkout-field">
+                        <label for="co-apellido">Apellido</label>
+                        <input type="text" id="co-apellido" placeholder="Tu apellido" required autocomplete="family-name">
+                    </div>
+                </div>
+                <div class="checkout-field">
+                    <label for="co-email">Email</label>
+                    <input type="email" id="co-email" placeholder="tu@email.com" required autocomplete="email">
+                </div>
+                <div class="checkout-field">
+                    <label for="co-phone">Teléfono</label>
+                    <input type="tel" id="co-phone" placeholder="+54 9 11 0000-0000" autocomplete="tel">
+                </div>
+
+                <div class="checkout-field">
+                    <label>Mensajero preferido para coordinar</label>
+                    <div class="messenger-options" id="messenger-options">
+                        <button type="button" class="messenger-btn" data-messenger="WhatsApp" id="msg-whatsapp">
+                            <span class="msg-icon">💬</span> WhatsApp
+                        </button>
+                        <button type="button" class="messenger-btn" data-messenger="Facebook" id="msg-facebook">
+                            <span class="msg-icon">📘</span> Facebook
+                        </button>
+                        <button type="button" class="messenger-btn" data-messenger="Instagram" id="msg-instagram">
+                            <span class="msg-icon">📸</span> Instagram
+                        </button>
+                        <button type="button" class="messenger-btn" data-messenger="Telegram" id="msg-telegram">
+                            <span class="msg-icon">✈️</span> Telegram
+                        </button>
+                        <button type="button" class="messenger-btn" data-messenger="Email" id="msg-email">
+                            <span class="msg-icon">📧</span> Solo email
+                        </button>
+                    </div>
+                </div>
+
+                <p class="auth-error" id="co-error" aria-live="polite"></p>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="co-back">Volver</button>
+                    <button type="submit" class="btn-primary" id="co-submit">Confirmar pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="order-overlay">
+        <div class="modal order-modal" id="order-modal" role="dialog" aria-modal="true"
+            aria-labelledby="order-modal-title">
+            <div class="order-success-icon">✅</div>
+            <h2 id="order-modal-title">¡Pedido Enviado!</h2>
+            <p>Gracias por confiar en Mariia Bakht.<br>Me comunicaré contigo en menos de 24 hs.</p>
+            <div class="order-summary" id="order-summary"></div>
+            <button class="btn-primary" id="order-close">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
